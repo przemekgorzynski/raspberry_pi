@@ -1,15 +1,25 @@
 ---
 - name: Create users
-  ansible.builtin.user:
+  user:
     name: "{{ item.name }}"
     state: present
-    groups: "{{ item.groups }}"
+    shell:  "{{ item.shell }}"
+    group: "{{ item.groups }}"
+    create_home: yes
   loop:
-    - { name: 'przemek', groups: 'sudo' }
+    - { name: 'przemek', groups: 'sudo', shell: '/bin/bash' }
 
-#- name: Copy ssh public keys for user
-#  copy:
-#    src: files/id_rsa.pub
-#    dest: /home/"{{ item.user }}"/.ssh/"{{ item.key }}"
-#  loop:
-#    - { user: 'przemek', key: lookup('file', 'files/id_rsa_{{ item.user }}') }
+- name: Create a 2048-bit SSH key for user przemek in ~przemek/.ssh/id_rsa
+  user:
+    name: przemek
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
+- name: Update authorized keys
+  authorized_key:
+    user: przemek
+    state: present
+    key: "{{ item }}"
+  with_file:
+    - ./files/id_rsa_przemek.pub

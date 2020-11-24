@@ -10,3 +10,7 @@
   apt:
     name: "{{ packages }}"
     state: present
+
+- name: Set hostname
+  hostname:
+    name: raspberry
