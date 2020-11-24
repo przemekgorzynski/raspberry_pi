@@ -1,4 +1,4 @@
-pi_lan ansible_host=192.168.0.171 ansible_user=ubuntu ansible_ssh_pass=password
+pi_lan ansible_host=192.168.0.171 ansible_user=ubuntu 
 pi_wifi ansible_host=192.168.0.59
 
 [lan]
@@ -6,3 +6,5 @@ pi_lan
 
 [wifi]
 pi_wifi
+
+#ansible_ssh_pass=

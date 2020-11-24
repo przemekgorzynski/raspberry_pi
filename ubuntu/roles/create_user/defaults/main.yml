@@ -1,3 +1,0 @@
----
-- name: Check connectivity
-  ping:
