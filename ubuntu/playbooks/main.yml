@@ -4,6 +4,10 @@
   gather_facts: yes
   become: yes
 
+  pre_tasks:
+  - name: check connectivity
+    ping:
+    
   tasks:
   - import_role:
       name: connectivity
