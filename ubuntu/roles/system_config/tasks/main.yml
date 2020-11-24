@@ -28,3 +28,8 @@
     - ssh_restart
   tags:
     - ssh_configure
+
+- name: Connect to WI-FI
+  shell: nmcli dev wifi connect UPCBA5F2CB-5G  password  "{{ wifi_password }}"
+  tags:
+    - network

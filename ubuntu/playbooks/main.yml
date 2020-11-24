@@ -1,8 +1,11 @@
 ---
-- name: Main playbook 
+- name: Initiall configuration via LAN 
   hosts: lan
   gather_facts: yes
   become: yes
+
+  vars_files:
+    - ../vault.yml
 
   pre_tasks:
   - name: check connectivity
@@ -15,3 +18,16 @@
   - import_role:
       name: create_user
       tasks_from: main.yml
+
+- name: Configuration after reboot via WIFI
+  hosts: wifi
+  gather_facts: yes
+  become: yes
+
+  tasks:
+  - debug:
+      msg: Connection will be wstablished via WIFI, LAN cable can be remomved
+  
+  - name: reboot machine
+    reboot: 
+      reboot_timeout: 3600
