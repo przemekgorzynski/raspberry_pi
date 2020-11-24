@@ -1,0 +1,15 @@
+---
+- name: Create users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    state: present
+    groups: "{{ item.groups }}"
+  loop:
+    - { name: 'przemek', groups: 'sudo,przemek' }
+
+#- name: Copy ssh public keys for user
+#  copy:
+#    src: files/id_rsa.pub
+#    dest: /home/"{{ item.user }}"/.ssh/"{{ item.key }}"
+#  loop:
+#    - { user: 'przemek', key: lookup('file', 'files/id_rsa_{{ item.user }}') }

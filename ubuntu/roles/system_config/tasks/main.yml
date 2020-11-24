@@ -1,0 +1,12 @@
+---
+- name: Update system
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+    autoremove: yes
+
+- name: Install OS packages
+  apt:
+    name: "{{ packages }}"
+    state: present

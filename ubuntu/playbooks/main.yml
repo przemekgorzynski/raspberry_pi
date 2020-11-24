@@ -1,0 +1,13 @@
+---
+- name: Main playbook 
+  hosts: lan
+  gather_facts: yes
+  become: yes
+
+  tasks:
+  - import_role:
+      name: system_config
+      tasks_from: main.yml
+  - import_role:
+      name: create_user
+      tasks_from: main.yml
