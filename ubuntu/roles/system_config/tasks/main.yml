@@ -5,14 +5,26 @@
     state: latest
     update_cache: yes
     autoremove: yes
+  tags:
+    - update_system
 
 - name: Install OS packages
   apt:
     name: "{{ packages }}"
     state: present
-
+  tags:
+    - install_packages
+  
 - name: Set hostname
   hostname:
     name: raspberry
 
-#- name: Disable password login
+- name: Disable password login
+  replace:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication yes'
+    replace: 'PasswordAuthentication no'
+  notify:
+    - ssh_restart
+  tags:
+    - ssh_configure
