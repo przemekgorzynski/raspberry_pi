@@ -5,7 +5,7 @@
     state: present
     groups: "{{ item.groups }}"
   loop:
-    - { name: 'przemek', groups: 'sudo,przemek' }
+    - { name: 'przemek', groups: 'sudo' }
 
 #- name: Copy ssh public keys for user
 #  copy:
