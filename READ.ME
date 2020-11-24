@@ -1,0 +1,10 @@
+Configuration for raspberry pi 4
+
+###############################################################
+UBUNTU:
+After flashing SD card create file called "ssh" to enable ssh login during first raspberry boot.
+Ubuntu user is created by default during flashing SD-card. Initial credential after flashing SD card ubuntu:ubuntu.
+During first login we are forced to change password for ubuntu user. This password should be provided during playbook execution. 
+
+ansible-playbook playbooks/main.yml -i inventory --ask-pass
+
