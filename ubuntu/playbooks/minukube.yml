@@ -1,5 +1,5 @@
 ---
-- name: Initiall configuration via LAN 
+- name: Installation of minikube
   hosts: wifi
   gather_facts: yes
   become: yes
