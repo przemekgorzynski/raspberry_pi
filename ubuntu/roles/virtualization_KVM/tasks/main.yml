@@ -1,0 +1,27 @@
+---
+- name: Update system
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+    autoremove: yes
+  tags:
+    - update_system
+
+- name: Install KVM packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+  tags:
+    - install_packages
+
+- name: Add user to libvirt,kvm groups
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups }}"
+    append: yes
+  loop:
+    - { name: 'przemek', groups: 'libvirt,kvm' }
+
+- name: Configure mdprobe
+  shell: sudo modprobe vhost_net && sudo lsmod | grep vhost && echo "vhost_net" | sudo tee -a /etc/modules
