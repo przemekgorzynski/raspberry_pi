@@ -1,8 +1,0 @@
-packages:
-- qemu-kvm
-- libguestfs-tools
-- virt-top
-- libvirt-clients
-- libvirt-daemon-system
-- bridge-utils
-- virt-manager
