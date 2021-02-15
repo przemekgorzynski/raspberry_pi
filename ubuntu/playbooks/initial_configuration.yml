@@ -1,7 +1,7 @@
 ---
 - name: Initiall configuration via LAN 
   hosts: lan
-  gather_facts: yes
+  gather_facts: no
   become: yes
 
   vars_files:
